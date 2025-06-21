@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>calculator</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="/files/styles.css">
+</head>
+
+<body>
+    <main class="container calculator bg-dark w-30">
+        <div class="row h-100 justify-content-center">
+            <div class="row first-row justify-content-center mt-3">
+                <div class="col-lg-12 h-100">
+                    <input type="text" class="text-end bg-dark text-white" readonly id="input-bar"
+                        style="width:100%;height: 100%;border-radius: 1rem; font-size: 3rem;" value="0">
+                </div>
+            </div>
+            <div class="second-row row justify-content-center align-items-center">
+                <div class="col-lg-11  " style="border-radius: 1rem;">
+                    <div class="row text-dark button-container">
+                        <div class="col-3  d-flex align-items-center justify-content-center "
+                            style="font-size: 2rem;">
+                            <button class="bg-blue" style="width: 100%;" onclick="keypress('9')">9</button>
+                        </div>
+                        <div class="col-3 d-flex align-items-center justify-content-center  "
+                            style="font-size: 2rem;">
+                            <button class="bg-blue" style="width: 100%; " onclick="keypress('AC')"
+                                id="ac-button">AC</button>
+                            <button class="bg-blue d-none" style="width: 100%;" onclick="keypress('DE')" id="de-button">
+                                <i class="fa-solid fa-delete-left"></i>
+                            </button>
+                        </div>
+                        <div class="col-3  d-flex align-items-center justify-content-center   "
+                            style="font-size: 2rem;">
+                            <button class="bg-blue" style="width: 100%; " onclick="keypress('÷')"><i
+                                    class="fas fa-divide"></i></button>
+                        </div>
+                        <div class="col-3 d-flex align-items-center justify-content-center  "
+                            style="font-size: 2rem;">
+                            <button class="bg-blue" style="width: 100%;" onclick="keypress('+')"><i
+                                    class="fas fa-plus"></i></button>
+                        </div>
+                        <div class="col-3  d-flex align-items-center justify-content-center "
+                            style="font-size: 2rem;">
+                            <button class="bg-blue" style="width: 100%;" onclick="keypress('6')">6</button>
+                        </div>
+                        <div class="col-3  d-flex align-items-center justify-content-center  "
+                            style="font-size: 2rem;">
+                            <button class="bg-blue" style="width: 100%;" onclick="keypress('7')">7</button>
+                        </div>
+                        <div class="col-3   d-flex align-items-center justify-content-center  "
+                            style="font-size: 2rem;">
+                            <button class="bg-blue" style="width: 100%;" onclick="keypress('8')">8</button>
+                        </div>
+                        <div class="col-3  d-flex align-items-center justify-content-center  "
+                            style="font-size: 2rem;">
+                            <button class="bg-blue" style="width: 100%;" onclick="keypress('-')"><i
+                                    class="	fas fa-minus "></i></button>
+                        </div>
+                        <div class="col-3   d-flex align-items-center justify-content-center  "
+                            style="font-size: 2rem;">
+                            <button class="bg-blue" style="width: 100%;" onclick="keypress('3')">3</button>
+                        </div>
+                        <div class="col-3   d-flex align-items-center justify-content-center  "
+                            style="font-size: 2rem;">
+                            <button class="bg-blue" style="width: 100%;" onclick="keypress('4')">4</button>
+                    </div>
+                        <div class="col-3  d-flex align-items-center justify-content-center  "
+                            style="font-size: 2rem;">
+                            <button class="bg-blue" style="width: 100%;" onclick="keypress('5')">5</button>
+                        </div>
+                        <div class="col-3  d-flex align-items-center justify-content-center "
+                            style="font-size: 2rem;">
+                            <button class="bg-blue" style="width: 100%;" onclick="keypress('X')"><i
+                                    class="fas fa-times"></i></button>
+                        </div>
+                        <div class="col-3   d-flex align-items-center justify-content-center  "
+                            style="font-size: 2rem;">
+                            <button class="bg-blue" style="width: 100%;" onclick="keypress('0')">0</button>
+                        </div>
+                        <div class="col-3  d-flex align-items-center justify-content-center  "
+                            style="font-size: 2rem;">
+                            <button class="bg-blue" style="width: 100%;" onclick="keypress('1')">1</button>
+                        </div>
+                        <div class="col-3 d-flex align-items-center justify-content-center  "
+                            style="font-size: 2rem;">
+                            <button class="bg-blue" style="width: 100%;" onclick="keypress('2')">2</button>
+                        </div>
+                        <div class="col-3 d-flex align-items-center justify-content-center  "
+                            style="font-size: 2rem;">
+                            <button class="bg-blue" style="width: 100%;" onclick="keypress('=')"><i
+                                    class="fas fa-equals"></i></button>
+                        </div>
+                    </div>
+                </div>
+    </main>
+
+    <script>
+        let inputBar = document.getElementById('input-bar');
+        let ACbutton = document.getElementById('ac-button');
+        let DEbutton = document.getElementById('de-button');
+        const showDeleteLeft = () => {
+            if (inputBar.value.length >= 1 && inputBar.value != 0) {
+                ACbutton.classList.add('d-none');
+                DEbutton.classList.remove('d-none');
+            }
+            else {
+                inputBar.value = 0;
+                ACbutton.classList.remove('d-none');
+                DEbutton.classList.add('d-none');
+            }
+        };
+        const findResult = (expression) => {
+            let expressions = expression.replaceAll('X', '*').replaceAll('÷', '/');
+            let result = eval(expressions);
+            return result
+        }
+
+        const deleteAndUpdate = () => {
+            inputBar.value = inputBar.value.slice(0, -1);
+            showDeleteLeft();
+        };
+
+        const keypress = (key) => {
+            if (key === 'DE') {
+                deleteAndUpdate();
+            }
+            else if (key === 'AC') {
+                inputBar.value = '';
+            }
+            else if (['X', '÷', '+', '-'].includes(key)) {
+                if (inputBar.value.length !== 0) {
+                    let lastChar = inputBar.value.slice(-1);
+                    if (!['X', '÷', '+', '-'].includes(lastChar)) {
+                        inputBar.removeAttribute('readonly');
+                        inputBar.value += key;
+                        inputBar.setAttribute('readonly', 'readonly');
+                    }
+                }
+            }
+
+            else if (key >= '0' && key <= '9') {
+                inputBar.removeAttribute('readonly');
+                if (inputBar.value === '0') {
+                    inputBar.value = key;
+                }
+                else {
+                    inputBar.value += key;
+                }
+                inputBar.setAttribute('readonly', 'readonly');
+            }
+            else if (key === '=') {
+                const result = findResult(inputBar.value);
+                inputBar.value = '';
+                inputBar.value = Math.round(result);
+            }
+
+            showDeleteLeft();
+        };
+
+
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
